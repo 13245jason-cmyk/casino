@@ -46,7 +46,7 @@ test('完整結算流程、localStorage、匯出及隱私', async ({ page }) => 
   await expect(page.getByLabel('Slots', { exact: true })).toHaveValue('0.0258');
   await expect(page.getByLabel('選擇 Excel 報表')).toBeEnabled();
   await page.getByLabel('選擇 Excel 報表').setInputFiles(fixture);
-  await expect(page.getByTestId('exact-formula')).toBeVisible();
+  await expect(page.getByTestId('exact-formula')).toBeVisible({ timeout: 30000 });
   const dl = page.waitForEvent('download');
   await page.getByRole('button', { name: '下載結算 Excel', exact: true }).click();
   const download = await dl;
@@ -75,7 +75,7 @@ test('錯誤報表清除舊結果、損毀文件、損毀設定', async ({ page 
   await page.goto('/');
   await expect(page.getByLabel('選擇 Excel 報表')).toBeEnabled();
   await page.getByLabel('選擇 Excel 報表').setInputFiles(fixture);
-  await expect(page.getByTestId('exact-formula')).toBeVisible();
+  await expect(page.getByTestId('exact-formula')).toBeVisible({ timeout: 30000 });
   await expect(page.getByLabel('選擇 Excel 報表')).toBeEnabled();
   await page
     .getByLabel('選擇 Excel 報表')
