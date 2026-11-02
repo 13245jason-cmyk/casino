@@ -1,0 +1,10 @@
+.git
+.venv
+.next
+node_modules
+legacy
+tests
+web-tests
+e2e
+test-results
+playwright-report

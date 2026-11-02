@@ -1,0 +1,23 @@
+{
+  "bets": {
+    "Slots": "1000",
+    "MiniGame": "2000",
+    "Casino1": "3000",
+    "Casino2": "4000"
+  },
+  "win": "-200",
+  "commissions": {
+    "Slots": "25.8",
+    "MiniGame": "51.6",
+    "Casino1": "33",
+    "Casino2": "28"
+  },
+  "totalBet": "10000",
+  "total": "138.4",
+  "net": "-61.6",
+  "final": "-49.28",
+  "payment": "49.28",
+  "ratioChangedFinal": "-43.12",
+  "period": "2026/01/01 00:00:00 至 2026/01/07 23:59:59",
+  "download": "代理結算_2026-01-01_2026-01-07.xlsx"
+}
