@@ -116,11 +116,11 @@ TEST_STATIC=1 npm run test:e2e
 
 1. 將此專案提交並推送至 GitHub。
 2. 登入 [Vercel](https://vercel.com/new)，Import Git Repository，選擇 `13245jason-cmyk/casino`，授權 Vercel 讀取儲存庫。
-3. Framework 選 Next.js，Root Directory 為專案根目錄，Node.js 選 24.x。
-4. Install Command `npm ci`、Build Command `npm run build`、Output Directory `out`。`vercel.json` 已提供設定及隱私相關 HTTP headers。
+3. Framework Preset 選 **Other**（純靜態部署），Root Directory 為專案根目錄，Node.js 選 24.x。
+4. Install Command `npm ci`、Build Command `npm run build`、Output Directory `out`。`vercel.json` 已以 `framework: null` 停用 Next.js 部署 adapter，並提供靜態輸出設定及隱私相關 HTTP headers。
 5. 不需資料庫或環境變數，按 Deploy。部署完成後開啟 Vercel 提供的 HTTPS 網址。
 6. 正式網站免登入。若 Vercel 開啟 Deployment Protection，請在 Project Settings → Deployment Protection 調整正式網址存取政策，確保目標使用者可直接開啟。
-7. 用實際 Excel 驗證 NT$ 18,563.41、修改並保存倍率、重新整理、下載檔案及手機畫面。正式部署後才可確認該網址可用。
+7. 用實際 Excel 核對應付金額與方向，並驗證修改保存倍率、重新整理、下載檔案及手機畫面。正式部署後才可確認該網址可用。
 
 目前工作環境沒有 Vercel Token 或已連結 Vercel 專案；完成建置不代表已部署。登入與 GitHub 授權需由擁有者在 Vercel 完成。請勿把 Token 貼到聊天或提交到 Git。
 
@@ -145,3 +145,9 @@ TEST_STATIC=1 npm run test:e2e
 - Production build 成功，首頁為靜態輸出；未將範例財務數字或原始附件包入網站。
 - GitHub Actions 已設定相同網站檢查及正式靜態版操作測試；遠端 CI 結果需以 GitHub 執行紀錄為準。
 - 尚未部署 Vercel，也尚未驗證公開網址。
+
+### 排除 NEXT_NO_ROUTES_MANIFEST
+
+若部署出現找不到 `out/routes-manifest.json`，代表 Vercel 將靜態 `out/` 交給 Next.js adapter 處理。請使用最新提交，在 Vercel 的 Settings → Build and Deployment 將 Framework Preset 改為 **Other**，Build Command 設為 `npm run build`，Output Directory 為 `out`，再重新部署最新 `main`（不要只重跑舊提交）。
+
+`out/` 是可直接提供的 HTML/CSS/JS 靜態網站，不需 Next.js 的伺服器路由 manifest；不要自行複製或建立空白 manifest。
